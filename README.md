@@ -15,8 +15,15 @@ You can set the following variables to configure the role. Here listed are the v
 
 | Value | Description | Default |
 |-------|-------------|---------|
-|`letsencrypt_domains` | domains to obtain certs for | "" |
-|`letsencrypt_mail_address` | Who gets update notifications | "" |
+| redis_instancename | name of the instance |'default'|
+| redis_port| TCP port |  6379 |
+| redis_bind_interface| TCP listen interface| 127.0.0.1|
+| redis_timeout | | 0 |
+| redis_loglevel| | "notice" |
+| redis_logdir | output directory of logfiles | /var/log/redis/ |
+| redis_databases | 16 |
+| redis_rdbcompression| | "yes" |
+| redis_dbdir | | /var/lib/redis
 
 ## Example Playbook
 
@@ -24,24 +31,22 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: jellyfish
       roles:
-         - { role: geekoops-letsencrypt-apache, letsencrypt_domains: "www.example.org", letsencrypt_mail_address: "webmaster@example.org" }
+         - { role: geekoops-redis, redis_instancename: "default"}
 
 An advanced example for the imaginary `jellyfish` test server
 
     - hosts: jellyfish
       roles:
-         - role: geekoops-letsencrypt-apache
+         - role: geekoops-redis
            vars:
-             letsencrypt_mail_address: "webmaster@example.org"
-             letsencrypt_domains:
-               - "www.example.org"
-               - "smtp.example.org"
-               - "imap.example.org"
+             redis_instancename: "cloud"
+         - role: geekoops-redis
+           vars:
+             redis_instancename: "www"
 
 ## License
 
 MIT
 
 # Development
-- It would be nice to switch between nginx and apache
 - Test on 15.3
