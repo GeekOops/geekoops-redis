@@ -2,6 +2,6 @@
 redis_package: redis
 redis_daemon: "redis@{{ redis_instancename }}"
 redis_pidfile: "/var/run/redis/{{ redis_instancename }}.pid"
-redis_suse_logfile: "/var/log/redis/{{ redis_instancename }}.log"
+redis_unixsocket: "/var/run/redis/{{ redis_instancename }}.sock"
 redis_conf_path: "/etc/redis/{{ redis_instancename }}.conf"
 redis_conf_mode: 0640
