@@ -7,7 +7,7 @@ port {{ redis_port }}
 tcp-backlog 511
 {% if redis_unixsocket %}
 unixsocket {{ redis_unixsocket }}
-unixsocketperm 700
+unixsocketperm 770
 {% endif %}
 timeout {{ redis_timeout }}
 tcp-keepalive 300
