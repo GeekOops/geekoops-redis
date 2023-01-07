@@ -1,16 +1,19 @@
 # {{ ansible_managed }}
 
 ################################## NETWORK #####################################
-bind {{ redis_bind_interface }}
 protected-mode yes
-port {{ redis_port }}
-tcp-backlog 511
+
 {% if redis_unixsocket %}
 unixsocket {{ redis_unixsocket }}
 unixsocketperm 770
-{% endif %}
-timeout {{ redis_timeout }}
+port 0
+{% else %}
+bind {{ redis_bind_interface }}
+port {{ redis_port }}
 tcp-keepalive 300
+{% endif %}
+tcp-backlog 511
+timeout {{ redis_timeout }}
 
 ################################# TLS/SSL #####################################
 
