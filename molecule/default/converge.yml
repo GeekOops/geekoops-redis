@@ -1,0 +1,46 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include geekoops-redis"
+      include_role:
+        name: "geekoops-redis"
+    ## Setup test enviroment
+    # test whether redis server accepts connections on the unix socket
+    - name: test connection to socket
+      copy:
+        content: |
+          <html>Success! The test page is displayed correctly</html>
+        dest: "{{www_dir}}/index.html"
+        group: "{{ nginx_user }}"
+        owner: "{{ nginx_group }}"
+        mode: 0754
+      register: deployed
+    - name: Deploy nginx configuration
+      copy:
+        content: |
+              server {
+                  listen 80 default_server;
+                  listen [::]:80 default_server;
+                  root {{ www_dir }};
+                  index index.html index.htm;
+                  location / {
+                      try_files $uri $uri/ =404;
+                  }
+              }
+        dest: "{{vhosts_dir}}/default.conf"
+        owner: root
+        group: root
+        mode: 0644
+      when: deployed.changed and deploy_nginx_config == true
+
+    - name: Perform nginx check
+      shell: nginx -t
+      when: deployed.changed
+
+    # Restart of nginx is required for the new configuration
+    - name: Restart nginx
+      systemd:
+        name: nginx
+        state: restarted
+      when: deployed.changed
