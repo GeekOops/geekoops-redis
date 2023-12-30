@@ -1,0 +1,6 @@
+---
+# openSUSE Leap 15.5 specific variables
+
+## Software packages
+
+redis_package: redis7

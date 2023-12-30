@@ -1,4 +1,8 @@
 ---
+# Get distribution specific vars:
+- name: include distribution specific vars
+  include_vars: "{{ansible_distribution}}_{{ansible_distribution_version}}.yml"
+
 - name: Ensure Redis is installed.
   ansible.builtin.package:
     name: "{{ redis_package }}"
