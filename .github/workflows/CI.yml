@@ -33,8 +33,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      - name: Install dependencies
-        run: pip3 install ansible molecule[docker] docker pytest testinfra molecule-plugins
+      - name: Install dependencies - 1
+        run: pip3 install ansible molecule[docker] docker pytest testinfra
+      - name: Install dependencies - 2
+        run: pip3 install molecule[docker] docker testinfra molecule-plugins
       - name: Run Molecule
         run: molecule test
         env:
