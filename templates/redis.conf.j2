@@ -74,7 +74,7 @@ rdbchecksum yes
 
 dbfilename {{ redis_instancename }}.rdb
 rdb-del-sync-files no
-dir {{ redis_dbdir }}
+dir {{ redis_dbdir }}/{{ redis_instancename }}/
 ################################# REPLICATION #################################
 # replicaof <masterip> <masterport>
 # masterauth <master-password>
