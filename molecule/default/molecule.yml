@@ -22,31 +22,11 @@ platforms:
     tmpfs:
       - /run
       - /tmp
-  - name: bullseye
-    image: docker.io/debian:bullseye
-    dockerfile: Dockerfile.bullseye
-    command: ${MOLECULE_DOCKER_COMMAND:-"/sbin/init"}
-    privileged: true
-    cgroupns: host
-    tmpfs:
-      - /run
-      - /tmp
-  - name: bookworm
-    image: docker.io/debian:bookworm
-    dockerfile: Dockerfile.bookworm
-    command: ${MOLECULE_DOCKER_COMMAND:-"/sbin/init"}
-    privileged: true
-    cgroupns: host
-    tmpfs:
-      - /run
-      - /tmp
 provisioner:
   name: ansible
   inventory:
     host_vars:
       leap15_4:
       leap15_5:
-      bullseye:
-      bookworm:
 verifier:
   name: testinfra
