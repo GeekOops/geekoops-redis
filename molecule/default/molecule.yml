@@ -13,6 +13,15 @@ platforms:
     tmpfs:
       - /run
       - /tmp
+  - name: leap15_5
+    image: registry.opensuse.org/opensuse/leap:15.5
+    dockerfile: Dockerfile.leap15_5
+    command: ${MOLECULE_DOCKER_COMMAND:-"/usr/sbin/init"}
+    privileged: true
+    cgroupns: host
+    tmpfs:
+      - /run
+      - /tmp
   - name: bullseye
     image: docker.io/debian:bullseye
     dockerfile: Dockerfile.bullseye
@@ -36,6 +45,7 @@ provisioner:
   inventory:
     host_vars:
       leap15_4:
+      leap15_5:
       bullseye:
       bookworm:
 verifier:
