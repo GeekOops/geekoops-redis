@@ -10,9 +10,7 @@
     - name: test connection to socket
       ansible.builtin.command:
         argv:
-          - redis-benchmark
-          - -q
-          - -n
-          - 100
+          - redis-cli
           - -s
           - /var/run/redis/default.sock
+          - ping
