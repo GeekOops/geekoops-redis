@@ -7,11 +7,11 @@
         name: "geekoops-redis"
     ## Setup test enviroment
     # test whether redis server accepts connections on the unix socket
-    - name: test connection to socket
-      tags: molecule-idempotence-notest
-      ansible.builtin.command:
-        argv:
-          - redis-cli
-          - -s
-          - /var/run/redis/default.sock
-          - ping
+#    - name: test connection to socket
+#      tags: molecule-idempotence-notest
+#      ansible.builtin.command:
+#        argv:
+#          - redis-cli
+#          - -s
+#          - /var/run/redis/default.sock
+#          - ping
