@@ -15,4 +15,4 @@
           - -n
           - 100
           - -s
-          - /var/run/redis/{{ redis_instancename }}.sock
+          - /var/run/redis/default.sock
