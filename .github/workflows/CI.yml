@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies - 2
         run: pip3 install molecule[docker] docker testinfra molecule-plugins
       - name: Run Molecule
-        run: molecule --debugtest
+        run: molecule --debug test
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
