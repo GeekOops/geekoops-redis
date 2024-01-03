@@ -38,7 +38,7 @@
       - -g
       - redis
       - -m
-      - 0750
+      - '0750'
       - "/var/lib/redis/{{ redis_instancename }}/"
 #  args:
 #    cmd: >
