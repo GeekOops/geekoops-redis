@@ -32,7 +32,7 @@
   ansible.builtin.command:
   args:
     cmd: >
-      "install -d -o redis -g redis -m 0750
+      "/usr/bin/install -d -o redis -g redis -m 0750
       /var/lib/redis/{{ redis_instancename }}/"
 
 - name: Ensure Redis is running and enabled on boot.
