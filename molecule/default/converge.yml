@@ -8,4 +8,11 @@
     ## Setup test enviroment
     # test whether redis server accepts connections on the unix socket
     - name: test connection to socket
-      shell: redis-benchmark -q -n 100 -s /var/run/redis/{{ redis_instancename }}.sock
+      ansible.builtin.command:
+        argv:
+          - redis-benchmark
+          - -q
+          - -n
+          - 100
+          - -s
+          - /var/run/redis/{{ redis_instancename }}.sock
