@@ -3,6 +3,11 @@
 - name: include distribution specific vars
   include_vars: "{{ansible_distribution}}_{{ansible_distribution_version}}.yml"
 
+- name: Ensure coreutils are present
+  ansible.builtin.package:
+    name: "coreutils"
+    state: present
+
 - name: Ensure Redis is installed.
   ansible.builtin.package:
     name: "{{ redis_package }}"
