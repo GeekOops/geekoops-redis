@@ -22,6 +22,24 @@ platforms:
     tmpfs:
       - /run
       - /tmp
+  - name: leap15_6
+    image: registry.opensuse.org/opensuse/leap:15.6
+    dockerfile: Dockerfile.leap15_5
+    command: ${MOLECULE_DOCKER_COMMAND:-"/usr/sbin/init"}
+    privileged: true
+    cgroupns: host
+    tmpfs:
+      - /run
+      - /tmp
+  - name: leap16_0
+    image: registry.opensuse.org/opensuse/leap:16.0
+    dockerfile: Dockerfile.leap15_5
+    command: ${MOLECULE_DOCKER_COMMAND:-"/usr/sbin/init"}
+    privileged: true
+    cgroupns: host
+    tmpfs:
+      - /run
+      - /tmp
 provisioner:
   name: ansible
   inventory:
